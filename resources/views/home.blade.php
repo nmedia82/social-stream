@@ -67,91 +67,31 @@
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> All Streams</a></li>
+                        <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-circle-o"></i> All Streams</a></li>
                         <li><a href="index.html"><i class="fa fa-circle-o"></i> Stream 1</a></li>
                         <li><a href="index2.html"><i class="fa fa-circle-o"></i> Stream 2</a></li>
                     </ul>
                 </li>
                 <li class="header">Settings</li>
-                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Add Stream</span></a></li>
+                <li><a href="{{ url('/add-stream') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Add Stream</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>Control panel</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
-            </ol>
-        </section>
-        <section class="content">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Social Streams</h3>
-                </div>
-                <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Stream Title</th>
-                                <th>Shortcode</th>
-                                <th>Social Networks</th>
-                                <th>Date Added</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>A test stream</td>
-                            <td>[stream id="1"]</td>
-                            <td>5</td>
-                            <td>25 July 2015</td>
-                            <td>
-                                <button class="btn btn-info btn-xs">Edit</button>
-                                <button class="btn btn-danger btn-xs">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Another stream</td>
-                            <td>[stream id="2"]</td>
-                            <td>13</td>
-                            <td>26 June 2015</td>
-                            <td>
-                                <button class="btn btn-info btn-xs">Edit</button>
-                                <button class="btn btn-danger btn-xs">Delete</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Stream Title</th>
-                                <th>Shortcode</th>
-                                <th>Social Networks</th>
-                                <th>Date Added</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </section>
-    </div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 1.1.0
-    </div>
-    <strong>Copyright &copy; 2016-2017 <a href="http://najeebmedia.com">N-Media</a>.</strong> All rights
-    reserved.
-</footer>
+
+        @if (Route::getCurrentRoute()->getPath() == 'add-stream')
+            @include('add')
+        @else
+            @include('listing')
+        @endif
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.1.0
+        </div>
+        <strong>Copyright &copy; 2016-2017 <a href="http://najeebmedia.com">N-Media</a>.</strong> All rights
+        reserved.
+    </footer>
 </div>
 <!-- ./wrapper -->
 @endsection

@@ -47,5 +47,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
+    <!-- N-Media Custom Script -->
+    <script src="dist/js/script.js"></script>
 </body>
 </html>
