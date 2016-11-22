@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/add-stream', 'HomeController@index');
+Route::post('/home', 'HomeController@store');
+Route::delete('/home/{id}', 'HomeController@delete');

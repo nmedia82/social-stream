@@ -17,6 +17,7 @@
                 <h3 class="box-title">Social Streams</h3>
             </div>
             <div class="box-body">
+                @if( count($all_streams) > 0)
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -28,26 +29,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>A test stream</td>
-                        <td>[stream id="1"]</td>
-                        <td>5</td>
-                        <td>25 July 2015</td>
-                        <td>
-                            <button class="btn btn-info btn-xs">Edit</button>
-                            <button class="btn btn-danger btn-xs">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Another stream</td>
-                        <td>[stream id="2"]</td>
-                        <td>13</td>
-                        <td>26 June 2015</td>
-                        <td>
-                            <button class="btn btn-info btn-xs">Edit</button>
-                            <button class="btn btn-danger btn-xs">Delete</button>
-                        </td>
-                    </tr>
+                        @foreach ($all_streams as $stream)
+                        <tr>
+                            <td>{{ $stream->name }}</td>
+                            <td>[stream id="{{ $stream->id }}"]</td>
+                            <td>
+                                <?php
+                                    $data_obj = json_decode($stream->settings);
+                                    echo count((array)$data_obj);
+                                ?>
+                            </td>
+                            <td>{{ $stream->created_at }}</td>
+                            <td>
+                                {!! Form::open(['url' => ['/home', $stream->id], 'method'=>'DELETE']) !!}
+                                    <button class="btn btn-danger btn-xs">Delete</button>
+                                {!! Form::close() !!}
+                                <button class="btn btn-info btn-xs">Edit</button>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
@@ -59,6 +59,7 @@
                         </tr>
                     </tfoot>
                 </table>
+                @endif
             </div>
             <!-- /.box-body -->
         </div>

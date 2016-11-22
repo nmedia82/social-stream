@@ -68,8 +68,11 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-circle-o"></i> All Streams</a></li>
-                        <li><a href="index.html"><i class="fa fa-circle-o"></i> Stream 1</a></li>
-                        <li><a href="index2.html"><i class="fa fa-circle-o"></i> Stream 2</a></li>
+                        @if( count($all_streams) > 0)
+                          @foreach ($all_streams as $stream)
+                            <li><a href="{{ url('/edit-stream/'.$stream->id) }}"><i class="fa fa-circle-o"></i> {{ $stream->name }}</a></li>
+                          @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li class="header">Settings</li>

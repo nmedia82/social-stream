@@ -21,7 +21,7 @@
                     <div class="form-group">
                         {{ Form::label('stream_title', 'Stream Title', ['class' => 'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
-                            {{ Form::text('stream_title', '', ['class' => 'form-control']) }}
+                            {{ Form::text('stream_title', '', ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="social-settings" data-example-id="togglable-tabs">
@@ -49,7 +49,30 @@
                                                         <div class="form-group">
                                                             <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
                                                             <div class="col-sm-10">
-                                                                <?php echo Form::text($network['id'].'['.$field_data['id'].']', '', ['class' => 'form-control']) ?>
+                                                                <?php echo Form::text('settings['.$network['id'].']['.$field_data['id'].']', '', ['class' => 'form-control']) ?>
+                                                                <div class="help-block"><?php echo $field_data['help']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <?php break;
+                                                    case 'select': ?>
+                                                        <div class="form-group">
+                                                            <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
+                                                            <div class="col-sm-10">
+                                                                <?php echo Form::select('settings['.$network['id'].']['.$field_data['id'].']', $field_data['options'], '' , ['class' => 'form-control']) ?>
+                                                                <div class="help-block"><?php echo $field_data['help']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <?php break;
+                                                    case 'checkbox': ?>
+                                                        <div class="form-group">
+                                                            <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
+                                                            <div class="col-sm-10">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <?php echo Form::checkbox('settings['.$network['id'].']['.$field_data['id'].']', 'yes'); ?>
+                                                                        <?php echo $field_data['title'];  ?>
+                                                                    </label>
+                                                                </div>                                                            
                                                                 <div class="help-block"><?php echo $field_data['help']; ?></div>
                                                             </div>
                                                         </div>
