@@ -95,7 +95,13 @@
                 <h3 class="box-title">Add New Stream</h3>
             </div>
             <div class="box-body">
-                {!! Form::open(['url' => '/home']) !!}
+                {{ Form::open(array('url' => url('/home'), 'class'=>'form-horizontal')) }}
+                    <div class="form-group">
+                        {{ Form::label('stream_title', 'Stream Title', ['class' => 'col-sm-2 control-label']) }}
+                        <div class="col-sm-10">
+                            {{ Form::text('stream_title', '', ['class' => 'form-control']) }}
+                        </div>
+                    </div>                    
                     <div class="social-settings" data-example-id="togglable-tabs">
                         <ul class="nav nav-tabs" id="#social-nav" role="tablist">
                             @foreach ($socialNetworks as $network)
