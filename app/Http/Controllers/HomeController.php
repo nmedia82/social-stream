@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -23,15 +24,41 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return View::make('home')->with(array('networks' => $this->get_social_networks()));
     }
 
     public function get_social_networks(){
         $socialNetworks = array(
             array(
                 'label' => 'Facebook',
-                'id' => 'facebook',
+                'id'    => 'facebook',
                 'class' => 'fa-facebook-official',
+                'fields'=> array(
+                    array(
+                        'title' => 'ID',
+                        'type'  => 'text',
+                        'id'    => 'id',
+                        'help'  => 'Facebook page wall posts - Enter the page ID',
+                    ),
+                    array(
+                        'title' => 'Intro',
+                        'type'  => 'text',
+                        'id'    => 'intro',
+                        'help'  => 'Text for feed item link',
+                    ),
+                    array(
+                        'title' => 'Comments',
+                        'type'  => 'text',
+                        'id'    => 'comments',
+                        'help'  => 'Enter number of comments to show for facebook album posts (max 25)',
+                    ),
+                    array(
+                        'title' => 'Image Width',
+                        'type'  => 'text',
+                        'id'    => 'comments',
+                        'help'  => 'Enter number of comments to show for facebook album posts (max 25)',
+                    ),
+                ), 
             ),
             array(
                 'label' => 'Twitter',

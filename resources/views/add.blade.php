@@ -10,85 +10,7 @@
             <li class="active">Add New Stream</li>
         </ol>
     </section>
-        <?php
-            $socialNetworks = array(
-                array(
-                    'label' => 'Facebook',
-                    'id' => 'facebook',
-                    'class' => 'fa-facebook-official',
-                ),
-                array(
-                    'label' => 'Twitter',
-                    'id' => 'twitter',
-                    'class' => 'fa-twitter',
-                ),
-                array(
-                    'label' => 'Google+',
-                    'id' => 'googleplus',
-                    'class' => 'fa-google-plus',
-                ),
-                array(
-                    'label' => 'RSS',
-                    'id' => 'rss',
-                    'class' => 'fa-rss',
-                ),
-                array(
-                    'label' => 'Flickr',
-                    'id' => 'flickr',
-                    'class' => 'fa-flickr',
-                ),
-                array(
-                    'label' => 'Delicious',
-                    'id' => 'delicious',
-                    'class' => 'fa-delicious',
-                ),
-                array(
-                    'label' => 'YouTube',
-                    'id' => 'youtube',
-                    'class' => 'fa-youtube',
-                ),
-                array(
-                    'label' => 'Pinterest',
-                    'id' => 'pinterest',
-                    'class' => 'fa-pinterest-p',
-                ),
-                array(
-                    'label' => 'Last.FM',
-                    'id' => 'lastfm',
-                    'class' => 'fa-lastfm',
-                ),
-                array(
-                    'label' => 'Dribble',
-                    'id' => 'dribble',
-                    'class' => 'fa-dribbble',
-                ),
-                array(
-                    'label' => 'Vimeo',
-                    'id' => 'vimeo',
-                    'class' => 'fa-vimeo',
-                ),
-                array(
-                    'label' => 'Stumbleupon',
-                    'id' => 'stumbleupon',
-                    'class' => 'fa-stumbleupon',
-                ),
-                array(
-                    'label' => 'Deviantart',
-                    'id' => 'deviantart',
-                    'class' => 'fa-deviantart',
-                ),
-                array(
-                    'label' => 'Tumblr',
-                    'id' => 'tumblr',
-                    'class' => 'fa-tumblr',
-                ),
-                array(
-                    'label' => 'Instagram',
-                    'id' => 'instagram',
-                    'class' => 'fa-instagram',
-                ),
-            );
-        ?>
+
     <section class="content">
         <div class="box">
             <div class="box-header">
@@ -101,10 +23,10 @@
                         <div class="col-sm-10">
                             {{ Form::text('stream_title', '', ['class' => 'form-control']) }}
                         </div>
-                    </div>                    
+                    </div>
                     <div class="social-settings" data-example-id="togglable-tabs">
                         <ul class="nav nav-tabs" id="#social-nav" role="tablist">
-                            @foreach ($socialNetworks as $network)
+                            @foreach ($networks as $network)
                                 <li role="presentation" class="@if($loop->first) active @endif">
                                     <a href="#{{$network['id']}}"
                                         role="tab" data-toggle="tooltip"
@@ -117,9 +39,29 @@
                             @endforeach
                         </ul>
                         <div class="tab-content" style="padding: 8px 2px;">
-                            @foreach ($socialNetworks as $network)
+                            @foreach ($networks as $network)
                                 <div class="tab-pane fade @if($loop->first) active @endif in" role="tabpanel" id="{{$network['id']}}">
-                                    Fields for {{$network['label']}}
+                                    <?php 
+                                        if(isset($network['fields'])){
+                                            foreach ($network['fields'] as $field_data) {
+                                                switch ($field_data['type']) {
+                                                    case 'text': ?>
+                                                        <div class="form-group">
+                                                            <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
+                                                            <div class="col-sm-10">
+                                                                <?php echo Form::text($network['id'].'['.$field_data['id'].']', '', ['class' => 'form-control']) ?>
+                                                                <div class="help-block"><?php echo $field_data['help']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <?php break;
+                                                    
+                                                    default:
+                                                        # code...
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    ?>
                                 </div>
                             @endforeach                        
                         </div>
