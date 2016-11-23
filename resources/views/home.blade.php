@@ -59,12 +59,12 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Streams</span>
-                    <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                      <i class="fa fa-dashboard"></i> <span>Streams</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-circle-o"></i> All Streams</a></li>
@@ -75,8 +75,23 @@
                         @endif
                     </ul>
                 </li>
-                <li class="header">Settings</li>
                 <li><a href="{{ url('/add-stream') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Add Stream</span></a></li>
+                <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-dashboard"></i> <span>Pages</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @if( count($all_pages) > 0)
+                          @foreach ($all_pages as $page)
+                            <li><a href="{{ url('/edit-page/'.$page->id) }}"><i class="fa fa-circle-o"></i> {{ $page->title }}</a></li>
+                          @endforeach
+                        @endif
+                    </ul>
+                </li>
+                <li><a href="{{ url('/add-page') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Add Page</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -84,6 +99,12 @@
 
         @if (Route::getCurrentRoute()->getPath() == 'add-stream')
             @include('add')
+        @elseif (Route::getCurrentRoute()->getPath() == 'edit-stream/{id}')
+            @include('edit')
+        @elseif (Route::getCurrentRoute()->getPath() == 'edit-page/{id}')
+            @include('editpage')
+        @elseif (Route::getCurrentRoute()->getPath() == 'add-page')
+            @include('addpage')
         @else
             @include('listing')
         @endif

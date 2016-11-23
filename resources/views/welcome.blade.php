@@ -13,7 +13,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -53,7 +53,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    @if( count($all_pages) > 0)
+                      @foreach ($all_pages as $page)
+                        <li class="<?php echo (isset($page_id) && $page_id == $page->id) ? 'active' : '' ; ?>"><a href="{{ url('/view-page/'.$page->id) }}"> {{ $page->title }}</a></li>
+                      @endforeach
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -86,9 +90,18 @@
             </div>
         </div>
     </nav>
+    
+    <div class="container">
+        @if (Route::getCurrentRoute()->getPath() == 'view-page/{id}')
+            @include('single')
+        @else
+            @include('homepage')
+        @endif        
+    </div>
+
     <!-- jQuery 2.2.3 -->
-    <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="{{ URL::asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 </html>

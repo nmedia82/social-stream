@@ -44,7 +44,7 @@
                                 {!! Form::open(['url' => ['/home', $stream->id], 'method'=>'DELETE']) !!}
                                     <button class="btn btn-danger btn-xs">Delete</button>
                                 {!! Form::close() !!}
-                                <button class="btn btn-info btn-xs">Edit</button>
+                                <a href="{{ url('/edit-stream/'.$stream->id) }}" class="btn btn-info btn-xs">Edit</a>
                             </td>
                         </tr>
                         @endforeach
