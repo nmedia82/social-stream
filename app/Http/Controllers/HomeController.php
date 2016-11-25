@@ -146,6 +146,18 @@ class HomeController extends Controller
                'class' => 'fa-facebook-official',
                'fields'=> array(
                     array(
+                       'title' => 'Facebook App ID',
+                       'type'  => 'text',
+                       'id'    => 'app_id',
+                       'help'  => 'Required For All Facebook Page Feeds',
+                   ),
+                    array(
+                       'title' => 'Facebook App Secret',
+                       'type'  => 'text',
+                       'id'    => 'app_secret',
+                       'help'  => 'Required For All Facebook Page Feeds',
+                   ),
+                    array(
                        'title' => 'ID',
                        'type'  => 'text',
                        'id'    => 'id',
@@ -229,6 +241,30 @@ class HomeController extends Controller
                 'id' => 'twitter',
                 'class' => 'fa-twitter',
                 'fields'=> array(
+                    array(
+                       'title' => 'Consumer Key',
+                       'type'  => 'text',
+                       'id'    => 'consumer_key',
+                       'help'  => 'Required For All Twitter Feeds',
+                    ),
+                    array(
+                       'title' => 'Consumer Secret',
+                       'type'  => 'text',
+                       'id'    => 'consumer_secret',
+                       'help'  => 'Required For All Twitter Feeds',
+                    ),
+                    array(
+                       'title' => 'OAuth Access Token',
+                       'type'  => 'text',
+                       'id'    => 'access_token',
+                       'help'  => 'Required For All Twitter Feeds',
+                    ),
+                    array(
+                       'title' => 'OAuth Access Token Secret',
+                       'type'  => 'text',
+                       'id'    => 'access_token_secret',
+                       'help'  => 'Required For All Twitter Feeds',
+                    ),
                     array(
                        'title' => 'Id',
                        'type'  => 'text',
