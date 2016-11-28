@@ -14,6 +14,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}">
+    <!-- nmedia custom CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -101,7 +103,13 @@
 
     <!-- jQuery 2.2.3 -->
     <script src="{{ URL::asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <!-- jQuery Masonry -->
+    <script src="{{ URL::asset('js/masonry.pkgd.js') }}"></script>
+    <!-- jQuery Mixitup -->
+    <script src="{{ URL::asset('js/jquery.mixitup.min.js') }}"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Custom Script -->
+    <script src="{{ URL::asset('js/pagescript.js') }}"></script>
 </body>
 </html>
