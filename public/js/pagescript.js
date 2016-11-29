@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	$('[data-toggle="tooltip"]').tooltip();
+	// $('[data-toggle="tooltip"]').tooltip();
 	// mixItUp function
 	$('#sortable-columns').mixItUp({
         activeClass: 'on',

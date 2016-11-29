@@ -5,41 +5,34 @@
 		</h2>	
 		<div class="btn-group" role="group" aria-label="...">
 		   <button class="btn btn-primary filter" data-toggle="tooltip" title="All Feeds" data-filter="all">All</button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Facebook" data-filter=".facebook"><i class="fa fa-facebook-official"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Twitter" data-filter=".twitter"><i class="fa fa-twitter"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Google Plus" data-filter=".google-plus"><i class="fa fa-google-plus"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="RSS" data-filter=".rss"><i class="fa fa-rss"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Flickr" data-filter=".flickr"><i class="fa fa-flickr"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Delicious" data-filter=".delicious"><i class="fa fa-delicious"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Youtube" data-filter=".youtube"><i class="fa fa-youtube"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Pinterest" data-filter=".pinterest"><i class="fa fa-pinterest-p"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Lastfm" data-filter=".lastfm"><i class="fa fa-lastfm"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Dribbble" data-filter=".dribbble"><i class="fa fa-dribbble"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Vimeo" data-filter=".vimeo"><i class="fa fa-vimeo"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Stumbleupon" data-filter=".stumbleupon"><i class="fa fa-stumbleupon"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Deviantart" data-filter=".deviantart"><i class="fa fa-deviantart"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Tumblr" data-filter=".tumblr"><i class="fa fa-tumblr"></i></button>
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="Instagram" data-filter=".instagram"><i class="fa fa-instagram"></i></button>
+			<?php foreach ($social_data as $network => $settings) { ?>
+			   <button class="btn btn-primary filter" data-filter=".<?php echo $network; ?>"><i class="fa fa-<?php echo $network; ?>"></i></button>
+			<?php } ?>
 		</div>
 	</div>
 </div>
 <br><br><br>
 <div class="row" id="sortable-columns">
-	<div class="col-sm-3 mix facebook">
-		<div class="nm-facebook">
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			    <div class="thumbnail">
-			    	<img src="{{ URL::asset('img/1.jpg') }}" class="img-responsive">
-			    </div>
-			    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-			  </div>
-			  <div class="panel-footer"><i class="fa fa-facebook"></i> <a href="">twitted </a>1 month ago</div>
-			</div>					
+
+	<?php foreach ($social_data as $network => $settings) { ?>
+		<div class="col-sm-3 mix <?php echo $network; ?>">
+			<div class="nm-<?php echo $network; ?>">
+				@include('templates/facebook', ['some' => $settings])
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="thumbnail">
+							<img src="{{ URL::asset('img/1.jpg') }}" class="img-responsive">
+						</div>
+							<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+						</div>
+					<div class="panel-footer"><i class="fa fa-facebook"></i> <a href="">twitted </a>1 month ago</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	<?php } ?>
+
 	<div class="col-sm-3 mix twitter">
 		<div class="nm-twitter">
 			<div class="panel panel-default">
@@ -195,11 +188,11 @@
 
 <h1>{{ $page_title }}</h1>
 <ul>
-<?php foreach ($stream_settings as $id => $network_data) {
-	echo '<li><pre>';
-	print_r($network_data);
-	echo '</li></pre>';
-} ?>
+<?php
+	echo '<pre>';
+	var_dump($social_data);
+	echo '</pre>';
+?>
 </ul>
 
 <div class="contents">
