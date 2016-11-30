@@ -2,7 +2,7 @@
 	font-size: 11px;
 }
 #sortable-columns .mix {
-	display: none;
+	/*display: none;*/
 }
 .panel-footer {
 	color: #fff;
@@ -18,7 +18,7 @@
 .nm-twitter .panel-footer {
 	background-color: #4ec2dc;
 }
-.nm-google-plus .panel-footer {
+.nm-googleplus .panel-footer {
 	background-color: #db4437;
 }
 .nm-youtube .panel-footer {

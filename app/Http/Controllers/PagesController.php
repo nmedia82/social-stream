@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Page;
 use App\Stream;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use DateTime;
 
 class PagesController extends Controller
 {
@@ -39,17 +40,19 @@ class PagesController extends Controller
             'social_data' => $all_data_arr,
             'page_contents' => $page->contents,
 	        'all_pages' => $created_pages,
+            'pagescontroller' => new PagesController,
         ));
     }
 
     public function get_facebook_data($options){
+
         $client = new \GuzzleHttp\Client();
         //FBing
-        $fb_id = '469643676424752';
-        $fb_secret = '0f3a6cb5cfea501073159522545dd267';
+        $fb_id = $options->app_id;
+        $fb_secret = $options->app_secret;
         $app_access_token = $fb_id.'|'.$fb_secret;
         $maxFeeds = 25;
-        $page_id = 'najeebmedia';
+        $page_id = $options->id;
         $fields = "id,message,picture,link,name,description,created_time,type,icon,from,object_id,likes,comments";
         
         $graphUrl = 'https://graph.facebook.com/v2.3/'.$page_id.'/feed?key=value&access_token='.$app_access_token.'&fields='.$fields.'&limit='.$maxFeeds;
@@ -67,10 +70,10 @@ class PagesController extends Controller
         }
         
         // return view('networks');
-        $ck = 'wNESEgYakKB7apRqEU6w4A';
-        $cs = 'BJZKJnkLJoej29UPcKYaX0Xv8YBOeFM3xa06tFLZYo';
-        $at = '316939729-dquGikqqJNj1ZHt7QhSGgr61Mb6yrxPt3Mi9eSA7';
-        $ats= 'sdqt34T5vM4fnK7YFHEtymcN40DPkbT9089zGJuVsI';
+        $ck = $options->consumer_key;
+        $cs = $options->consumer_secret;
+        $at = $options->access_token;
+        $ats= $options->access_token_secret;
         
         $connection = new TwitterOAuth($ck, $cs, $at, $ats);
         $content = $connection->get("account/verify_credentials");
@@ -81,5 +84,53 @@ class PagesController extends Controller
         $statuses = $connection->get("statuses/home_timeline", ["count" => 25, "exclude_replies" => true]);
 
         return $statuses;
+    }
+
+    public function get_flickr_data($options){
+        $flickr_client = new \GuzzleHttp\Client();
+        $flickr_id = $options->id;
+        $flickr_url = 'http://api.flickr.com/services/feeds/photos_public.gne?id='.$flickr_id.'&format=json&nojsoncallback=?';
+        $response = $flickr_client->get($flickr_url);
+
+        return json_decode($response->getBody());
+    }
+
+    public function get_googleplus_data($options){
+        $G_client = new \GuzzleHttp\Client();
+        $people = $options->id;
+        $api_key = $options->api_key;
+        // $gplus_url = 'https://www.googleapis.com/plus/v1/people/'.urlencode($people).'/activities/public?key=AIzaSyAmx2kbobEgQNaiVfSq-x71W4gRTK6KwH4';
+        $gplus_url = 'https://theproductionarea.net/laravel/socials/public/gplus';
+        $response = $G_client->get($gplus_url);
+        return json_decode($response->getBody());
+    }
+
+    public function time_elapsed_string($datetime, $full = false) {
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
 }

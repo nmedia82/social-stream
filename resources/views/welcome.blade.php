@@ -105,8 +105,8 @@
     <script src="{{ URL::asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- jQuery Masonry -->
     <script src="{{ URL::asset('js/masonry.pkgd.js') }}"></script>
-    <!-- jQuery Mixitup -->
-    <script src="{{ URL::asset('js/jquery.mixitup.min.js') }}"></script>
+    <!-- jQuery Isotope -->
+    <script src="{{ URL::asset('js/isotope.pkgd.min.js') }}"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- Custom Script -->
