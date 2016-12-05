@@ -95,6 +95,25 @@ class PagesController extends Controller
         return json_decode($response->getBody());
     }
 
+    public function get_youtube_data($options){
+
+        $apiKey = 'AIzaSyAmx2kbobEgQNaiVfSq-x71W4gRTK6KwH4';
+
+        $G_client = new \GuzzleHttp\Client();
+        $q = 'ammir khan';
+        $youtube_search = 'https://www.googleapis.com/youtube/v3/search?part=snippet&key='.$apiKey.'&order=date&maxResults=25&q='.$q;
+
+        $playlistId = 'PLC8A1AD995AB64055';
+        $youtube_playlist = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key='.$apiKey.'&playlistId='.$playlistId.'&maxResults=25';
+
+        $youtube_dummy = 'https://theproductionarea.net/laravel/socials/public/youtube';
+
+        $response = $G_client->get($youtube_dummy);
+
+        return json_decode($response->getBody());
+
+    }
+
     public function get_googleplus_data($options){
         $G_client = new \GuzzleHttp\Client();
         $people = $options->id;
