@@ -114,6 +114,20 @@ class PagesController extends Controller
 
     }
 
+    public function get_pinterest_data($options){
+
+        $pinterest_client = new \GuzzleHttp\Client();
+
+        $pinterest_id = $options->id;
+
+        $request_url = 'https://www.pinterest.com/'.$pinterest_id.'/feed.rss/';
+
+        $response = $pinterest_client->get($request_url);
+
+        return simplexml_load_string($response->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
+
+    }
+
     public function get_googleplus_data($options){
         $G_client = new \GuzzleHttp\Client();
         $people = $options->id;
