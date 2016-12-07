@@ -21,7 +21,7 @@
 </div>
 <?php
 	echo '<pre>';
-	// var_dump($social_data['pinterest']);
+	var_dump($social_data['tumblr']);
 	echo '</pre>';
 ?>
 

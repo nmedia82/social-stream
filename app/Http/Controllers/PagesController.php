@@ -95,6 +95,15 @@ class PagesController extends Controller
         return json_decode($response->getBody());
     }
 
+    public function get_tumblr_data($options){
+        $tumblr_client = new \GuzzleHttp\Client();
+        $tumblr_id = $options->id;
+        $tumblr_url = 'http://david.tumblr.com/api/read/json?callback=?&num=20';
+        $response = $tumblr_client->get($tumblr_url);
+        var_dump((string)$response->getBody());
+        // return json_decode($response->getBody());
+    }
+
     public function get_youtube_data($options){
 
         $apiKey = 'AIzaSyAmx2kbobEgQNaiVfSq-x71W4gRTK6KwH4';
