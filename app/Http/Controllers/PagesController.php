@@ -95,6 +95,32 @@ class PagesController extends Controller
         return json_decode($response->getBody());
     }
 
+
+    public function get_delicious_data($options){
+        $client = new \GuzzleHttp\Client();
+      
+        $delicious_id = $options->id;
+        $url = 'https://najeebmedia';
+        $graphUrl = 'http://feeds.del.icio.us/v2/json/'.$delicious_id;
+        
+        $res = $client->request('GET', $graphUrl);
+        return json_decode($res->getBody());
+    }
+
+
+    public function get_vimeo_data($options){
+        $client = new \GuzzleHttp\Client();
+      
+        $user = 'najeebmedia';
+        $accessToken = '32610885f98c50d63a2e284cfa9dbfb4';
+        
+        $graphUrl = 'https://api.vimeo.com/users/' . $user.'/feed/?access_token='.$accessToken;
+        // $graphUrl = 'https://api.del.icio.us/v1/nmedia';
+        
+        $res = $client->request('GET', $graphUrl);
+        return json_decode($res->getBody());
+    }
+
     public function get_tumblr_data($options){
         $tumblr_client = new \GuzzleHttp\Client();
         $tumblr_id = $options->id;
