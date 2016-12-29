@@ -21,7 +21,7 @@
 </div>
 <?php
 	echo '<pre>';
-	// var_dump($social_data['vimeo']);
+	// var_dump($social_data['tumblr']);
 	echo '</pre>';
 ?>
 

@@ -764,8 +764,8 @@ e.g. "My Youtube Feed/UUPPPrnT5080hPMxK1N4QSjA"
                 ),
            ),
            array(
-               'label' => 'Dribble',
-               'id' => 'dribble',
+               'label' => 'Dribbble',
+               'id' => 'dribbble',
                'class' => 'fa-dribbble',
                'fields'=> array(
                     array(

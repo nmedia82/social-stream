@@ -18,6 +18,9 @@
 .nm-twitter .panel-footer {
 	background-color: #4ec2dc;
 }
+.nm-tumblr .panel-footer {
+	background-color: #4ec2dc;
+}
 .nm-googleplus .panel-footer {
 	background-color: #db4437;
 }
@@ -33,7 +36,6 @@
 .nm-rss .panel-footer {
 	background-color: #FF9800;
 }
-
 .nm-lastfm .panel-footer {
 	background-color: #C90E12;
 }

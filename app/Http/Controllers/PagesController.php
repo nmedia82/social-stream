@@ -121,13 +121,50 @@ class PagesController extends Controller
         return json_decode($res->getBody());
     }
 
+
+    public function get_dribbble_data($options){
+        $client = new \GuzzleHttp\Client();
+      
+        $user = 'najeebmedia';
+        $accessToken = 'e918302415b22a47420377ba6eb560e23d562f08a1526a2ebf1b0eb6bcba6d3b';
+        $user = 'adamgrason';
+        
+        $graphUrl = 'https://api.dribbble.com/v1/users/'.$user.'/shots/?access_token='.$accessToken;
+        
+        $res = $client->request('GET', $graphUrl);
+        
+        return json_decode($res->getBody());
+    }
+
     public function get_tumblr_data($options){
-        $tumblr_client = new \GuzzleHttp\Client();
-        $tumblr_id = $options->id;
-        $tumblr_url = 'http://david.tumblr.com/api/read/json?callback=?&num=20';
-        $response = $tumblr_client->get($tumblr_url);
-        var_dump((string)$response->getBody());
-        // return json_decode($response->getBody());
+        $client = new \GuzzleHttp\Client();
+      
+        $user = 'nmedia82';
+        $blog = $user.'.tumblr.com';
+        $apiKey = 'kUSp55WOe3ZEZUyocFh61QIHdI8qX8brqzscoeECUZ9TCgJjI9';
+        
+        $graphUrl = 'https://api.tumblr.com/v2/blog/'.$blog.'/posts/photo/?api_key='.$apiKey;
+        
+        $res = $client->request('GET', $graphUrl);
+
+        $response = $res->getBody();
+
+        return json_decode($response);
+    }
+
+    public function get_lastfm_data($options){
+        $client = new \GuzzleHttp\Client();
+      
+        $user = 'najeebmedia';
+        $apiKey = 'fb8dc5062b43135e61815f3b406ced52';
+        $user = 'RTJ3';
+        $method = 'user.getRecentTracks';
+        
+        $graphUrl = 'http://ws.audioscrobbler.com/2.0/?method='.$method.'&user='.$user.'&api_key='.$apiKey.'&format=json';
+        // $graphUrl = 'https://api.del.icio.us/v1/nmedia';
+        
+        $res = $client->request('GET', $graphUrl);
+        return json_decode($res->getBody());
     }
 
     public function get_youtube_data($options){
