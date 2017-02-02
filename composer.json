@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "~5.0",
         "abraham/twitteroauth": "0.6.6",
-        "guzzlehttp/guzzle": "6.*"      
+        "guzzlehttp/guzzle": "6.*",
+        "rachidlaasri/laravel-installer": "^1.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

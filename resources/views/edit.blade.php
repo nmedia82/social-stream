@@ -58,7 +58,8 @@
                                                         <div class="form-group">
                                                             <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
                                                             <div class="col-sm-10">
-                                                                <?php echo Form::text('settings['.$network['id'].']['.$field_data['id'].']', $saved_settings->$network['id']->$field_data['id'], ['class' => 'form-control']) ?>
+                                                                <?php $val = (isset($saved_settings->{$network['id']}->{$field_data['id']})) ? $saved_settings->{$network['id']}->{$field_data['id']} : '' ; ?>
+                                                                <?php echo Form::text('settings['.$network['id'].']['.$field_data['id'].']', $val, ['class' => 'form-control']) ?>
                                                                 <div class="help-block"><?php echo (isset($field_data['help'])) ? $field_data['help'] : '' ; ?></div>
                                                             </div>
                                                         </div>
@@ -67,7 +68,8 @@
                                                         <div class="form-group">
                                                             <?php echo Form::label($field_data['id'], $field_data['title'], ['class' => 'col-sm-2 control-label']) ?>
                                                             <div class="col-sm-10">
-                                                                <?php echo Form::select('settings['.$network['id'].']['.$field_data['id'].']', $field_data['options'], $saved_settings->$network['id']->$field_data['id'] , ['class' => 'form-control']) ?>
+                                                                <?php $val = (isset($saved_settings->{$network['id']}->{$field_data['id']})) ? $saved_settings->{$network['id']}->{$field_data['id']} : '' ; ?>
+                                                                <?php echo Form::select('settings['.$network['id'].']['.$field_data['id'].']', $field_data['options'], $val , ['class' => 'form-control']) ?>
                                                                 <div class="help-block"><?php echo (isset($field_data['help'])) ? $field_data['help'] : '' ; ?></div>
                                                             </div>
                                                         </div>
@@ -78,7 +80,7 @@
                                                             <div class="col-sm-10">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <?php echo Form::checkbox('settings['.$network['id'].']['.$field_data['id'].']', 'yes', isset($saved_settings->$network['id']->$field_data['id'])); ?>
+                                                                        <?php echo Form::checkbox('settings['.$network['id'].']['.$field_data['id'].']', 'yes', isset($saved_settings->{$network['id']}->{$field_data['id']})); ?>
                                                                         <?php echo $field_data['title'];  ?>
                                                                     </label>
                                                                 </div>                                                            

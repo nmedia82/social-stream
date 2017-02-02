@@ -5,9 +5,9 @@
         <!-- Logo -->
         <a href="{{ url('/') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini">SS</span>
+            <span class="logo-mini">g2</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Social</b>Stream</span>
+            <span class="logo-lg">g2squid</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">

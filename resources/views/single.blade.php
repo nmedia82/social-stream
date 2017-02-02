@@ -20,9 +20,9 @@
 
 </div>
 <?php
-	echo '<pre>';
-	// var_dump($social_data['tumblr']);
-	echo '</pre>';
+	// echo '<pre>';
+	// var_dump($social_data['twitter']);
+	// echo '</pre>';
 ?>
 
 <div class="contents">

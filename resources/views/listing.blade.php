@@ -7,14 +7,14 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">All Streams</li>
+            <li class="active">All Networks</li>
         </ol>
     </section>
 
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Social Streams</h3>
+                <h3 class="box-title">All Networks</h3>
             </div>
             <div class="box-body">
                 @if( count($all_streams) > 0)

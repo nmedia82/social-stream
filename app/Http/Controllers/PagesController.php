@@ -40,6 +40,7 @@ class PagesController extends Controller
             'social_data' => $all_data_arr,
             'page_contents' => $page->contents,
 	        'all_pages' => $created_pages,
+            'stream_settings' => $stream_settings,
             'pagescontroller' => new PagesController,
         ));
     }
@@ -51,9 +52,9 @@ class PagesController extends Controller
         $fb_id = $options->app_id;
         $fb_secret = $options->app_secret;
         $app_access_token = $fb_id.'|'.$fb_secret;
-        $maxFeeds = 25;
+        $maxFeeds = ($options->max != '') ? $options->max : 25;
         $page_id = $options->id;
-        $fields = "id,message,picture,link,name,description,created_time,type,icon,from,object_id,likes,comments";
+        $fields = "id,message,full_picture,link,name,description,created_time,type,icon,from,object_id,likes,comments";
         
         $graphUrl = 'https://graph.facebook.com/v2.3/'.$page_id.'/feed?key=value&access_token='.$app_access_token.'&fields='.$fields.'&limit='.$maxFeeds;
         
@@ -73,7 +74,8 @@ class PagesController extends Controller
         $ck = $options->consumer_key;
         $cs = $options->consumer_secret;
         $at = $options->access_token;
-        $ats= $options->access_token_secret;
+        $ats = $options->access_token_secret;
+        $count = ($options->search != '') ? $options->search : 25 ;
         
         $connection = new TwitterOAuth($ck, $cs, $at, $ats);
         $content = $connection->get("account/verify_credentials");
@@ -81,7 +83,7 @@ class PagesController extends Controller
         if( isset($content->errors) )
             die('Check your Credentials');
         
-        $statuses = $connection->get("statuses/home_timeline", ["count" => 25, "exclude_replies" => true]);
+        $statuses = $connection->get("statuses/user_timeline", ["count" => $count, "exclude_replies" => true]);
 
         return $statuses;
     }
@@ -96,11 +98,21 @@ class PagesController extends Controller
     }
 
 
+    public function get_rss_data($options){
+        $client = new \GuzzleHttp\Client();
+      
+        $rss_url = $options->id;
+        $graphUrl = $rss_url;
+        
+        $res = $client->request('GET', $graphUrl);
+        return simplexml_load_string($res->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
+    }
+
+
     public function get_delicious_data($options){
         $client = new \GuzzleHttp\Client();
       
         $delicious_id = $options->id;
-        $url = 'https://najeebmedia';
         $graphUrl = 'http://feeds.del.icio.us/v2/json/'.$delicious_id;
         
         $res = $client->request('GET', $graphUrl);
@@ -111,11 +123,11 @@ class PagesController extends Controller
     public function get_vimeo_data($options){
         $client = new \GuzzleHttp\Client();
       
-        $user = 'najeebmedia';
+        $user = $options->id;
+        
         $accessToken = '32610885f98c50d63a2e284cfa9dbfb4';
         
         $graphUrl = 'https://api.vimeo.com/users/' . $user.'/feed/?access_token='.$accessToken;
-        // $graphUrl = 'https://api.del.icio.us/v1/nmedia';
         
         $res = $client->request('GET', $graphUrl);
         return json_decode($res->getBody());
@@ -204,8 +216,9 @@ class PagesController extends Controller
         $G_client = new \GuzzleHttp\Client();
         $people = $options->id;
         $api_key = $options->api_key;
-        // $gplus_url = 'https://www.googleapis.com/plus/v1/people/'.urlencode($people).'/activities/public?key=AIzaSyAmx2kbobEgQNaiVfSq-x71W4gRTK6KwH4';
-        $gplus_url = 'https://theproductionarea.net/laravel/socials/public/gplus';
+        $count =  ($options->count != '') ? $options->count : 25 ;
+        $gplus_url = 'https://www.googleapis.com/plus/v1/people/'.urlencode($people).'/activities/public?key='.$api_key.'&maxResults='.$count;
+        // $gplus_url = 'https://theproductionarea.net/laravel/socials/public/gplus';
         $response = $G_client->get($gplus_url);
         return json_decode($response->getBody());
     }

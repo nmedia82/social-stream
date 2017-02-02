@@ -1,0 +1,1 @@
+[17-Jan-2017 12:14:08 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/nmediaho/public_html/aljaved/social-stream/social-stream/storage/framework/views/70ea92423fddee4a1f530c026c4837c9b8b4dde6.php on line 18

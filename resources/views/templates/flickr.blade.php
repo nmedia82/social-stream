@@ -11,7 +11,11 @@
 					</h6>
 					
 				</div>
-			  <div class="panel-footer"><i class="fa fa-flickr"></i> <a href="">Published </a>
+			  <div class="panel-footer">
+			  	<i class="fa fa-flickr"></i>
+			  	<a href="#">
+			  		<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Published'; ?>
+			  	</a>
 				<?php echo $pagescontroller->time_elapsed_string($net_data->published); ?>
 			  </div>
 			</div>

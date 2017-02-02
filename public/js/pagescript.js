@@ -6,11 +6,11 @@ jQuery(document).ready(function($) {
 
 
     //randomly print them back out.
-    while(div.length > 0) {
+    /*while(div.length > 0) {
         var idx = Math.floor((Math.random() * (div.length-1)));
         var element = div.splice(idx, 1);
         $('#sortable-columns').append(element[0]);
-    }
+    }*/
 
     $('#sortable-columns').isotope({
       // options
