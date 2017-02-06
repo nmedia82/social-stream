@@ -12,13 +12,19 @@ jQuery(document).ready(function($) {
         $('#sortable-columns').append(element[0]);
     }*/
 
+    var divList = $(".mix");
+    divList.sort(function(a, b){
+        return $(b).find('.nmtime').data("time") - $(a).find('.nmtime').data("time");
+    });
+    $("#sortable-columns").html(divList);
+
     $('#sortable-columns').isotope({
-      // options
-      itemSelector: '.mix',
-      sortBy: 'category',
-      masonry: {
-        columnWidth: '.mix'
-      }
+        // options
+        itemSelector: '.mix',
+        sortBy: 'category',
+        masonry: {
+            columnWidth: '.mix'
+        }
     });
 
     $('.btn-group button').click(function(event) {
