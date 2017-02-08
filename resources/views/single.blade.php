@@ -1,8 +1,9 @@
 <div class="row">
 	<div class="col-md-12 text-center">
-		<h2 class="page-header">
+		<!-- <h2 class="page-header">
 			{{ $page_title }}
-		</h2>	
+		</h2> -->
+		<br>
 		<div class="btn-group" role="group" aria-label="...">
 		   <button class="btn btn-primary filter" data-toggle="tooltip" title="All Feeds" data-filter="*">All</button>
 			<?php foreach ($social_data as $network => $settings) { ?>
@@ -11,7 +12,7 @@
 		</div>
 	</div>
 </div>
-<br><br><br>
+<br><br>
 <div class="row" id="sortable-columns">
 
 	<?php foreach ($social_data as $network => $settings) { ?>
