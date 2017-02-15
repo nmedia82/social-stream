@@ -5,4 +5,6 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.rich-editor').wysihtml5();
+
+	$('.colorpicker').colorPicker();
 });

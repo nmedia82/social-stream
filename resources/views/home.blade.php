@@ -105,6 +105,8 @@
             @include('editpage')
         @elseif (Route::getCurrentRoute()->getPath() == 'add-page')
             @include('addpage')
+        @elseif (Route::getCurrentRoute()->getPath() == 'settings')
+            @include('settings')
         @else
             @include('listing')
         @endif

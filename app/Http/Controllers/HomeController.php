@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Stream;
 use App\Page;
+use App\Setting;
 
 class HomeController extends Controller
 {
@@ -28,10 +29,12 @@ class HomeController extends Controller
     {
         $created_pages = Page::orderBy('created_at', 'asc')->get();
         $created_streams = Stream::orderBy('created_at', 'asc')->get();
+        $settings = Setting::findOrFail(1);
         return View::make('home')->with(array(
           'networks' => $this->get_social_networks(),
           'all_streams' => $created_streams,
           'all_pages' => $created_pages,
+          'global_settings' => $created_pages,
         ));
     }
 
@@ -77,6 +80,21 @@ class HomeController extends Controller
         $settings->save();
 
         return redirect('/home');
+    }
+
+    /**
+     * Will save global settings
+     *
+     * @return 
+     */
+    public function save_settings(Request $request)
+    {
+        $setting = Setting::firstOrCreate(['id' => 1]);
+        $setting->styles = json_encode($request->styles);
+        $setting->css = $request->custom_css;
+        $setting->save();
+
+        return redirect('/settings');
     }
 
     /**

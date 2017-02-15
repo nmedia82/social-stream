@@ -28,9 +28,12 @@ Route::get('/add-page', 'HomeController@index');
 Route::get('/edit-stream/{id}', 'HomeController@edit');
 Route::get('/edit-page/{id}', 'HomeController@edit_page');
 
+Route::get('/settings', 'HomeController@index');
+
 Route::post('/home', 'HomeController@store');
 Route::post('/edit-stream/{id}', 'HomeController@update');
 Route::post('/add-page', 'HomeController@add_page');
 Route::post('/edit-page/{id}', 'HomeController@update_page');
+Route::post('/settings', 'HomeController@save_settings');
 
 Route::delete('/home/{id}', 'HomeController@delete');

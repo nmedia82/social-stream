@@ -51,6 +51,8 @@
     <script src="{{ URL::asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ URL::asset('dist/js/app.min.js') }}"></script>
+
+    <script src="{{ URL::asset('js/jqColorPicker.min.js') }}"></script>
     <!-- N-Media Custom Script -->
     <script src="{{ URL::asset('dist/js/script.js') }}"></script>
 </body>
