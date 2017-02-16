@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Page;
 use App\Stream;
+use App\Setting;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use DateTime;
 
@@ -25,6 +26,8 @@ class PagesController extends Controller
 
         $stream_settings = json_decode($stream_data->settings);
 
+        $global_settings = Setting::orderBy('created_at', 'asc')->get();
+
         $all_data_arr = array();
 
         foreach ($stream_settings as $network => $options) {
@@ -42,6 +45,7 @@ class PagesController extends Controller
 	        'all_pages' => $created_pages,
             'stream_settings' => $stream_settings,
             'pagescontroller' => new PagesController,
+            'global_settings' => $global_settings,
         ));
     }
 

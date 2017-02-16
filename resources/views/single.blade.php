@@ -5,16 +5,15 @@
 		</h2> -->
 		<br>
 		<div class="btn-group" role="group" aria-label="...">
-		   <button class="btn btn-primary filter" data-toggle="tooltip" title="All Feeds" data-filter="*">All</button>
+		   <button class="btn btn-<?php echo (isset($saved_settings['topbar'])) ? $saved_settings['topbar'] : 'primary' ; ?> filter" data-toggle="tooltip" title="All Feeds" data-filter="*">All</button>
 			<?php foreach ($social_data as $network => $settings) { ?>
-			   <button class="btn btn-primary filter" data-filter=".<?php echo $network; ?>"><i class="fa fa-<?php echo $network; ?>"></i></button>
+			   <button class="btn btn-<?php echo (isset($saved_settings['topbar'])) ? $saved_settings['topbar'] : 'primary' ; ?> filter" data-filter=".<?php echo $network; ?>"><i class="fa fa-<?php echo $network; ?>"></i></button>
 			<?php } ?>
 		</div>
 	</div>
 </div>
 <br><br>
 <div class="row" id="sortable-columns">
-
 	<?php foreach ($social_data as $network => $settings) { ?>
 		@include('templates/'.$network)
 	<?php } ?>

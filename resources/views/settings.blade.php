@@ -13,9 +13,16 @@
     </section>
 
     {{ Form::open(array('url' => url('/settings'), 'class'=>'form-horizontal')) }}
-    <?php foreach ($global_settings as $value) {
-    	var_dump($value->styles);
-    } ?>
+    <?php
+    	$saved_settings = array();
+    	$saved_custom_css = '';
+
+    	foreach ($global_settings as $value) {
+    	$saved_settings = json_decode($value->styles, true);
+    	$saved_custom_css = $value->css;
+    	
+    }
+    ?>
     <section class="content">
         <div class="box">
             <div class="box-header">
@@ -27,7 +34,7 @@
 						<div class="form-group">
 							<label for="bgcolor" class="col-sm-5 control-label">Background Color</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control colorpicker" id="bgcolor" name="styles[bgcolor]">
+								<input type="text" class="form-control colorpicker" id="bgcolor" name="styles[bgcolor]" value="<?php echo (isset($saved_settings['bgcolor'])) ? $saved_settings['bgcolor'] : '' ; ?>">
 							</div>
 						</div>
 						    
@@ -37,7 +44,10 @@
 									<i class="fa {{$network['class']}}"></i> {{$network['label']}} Color
 								</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control colorpicker" id="color_{{$network['id']}}" name="styles[color_{{$network['id']}}]">
+									<?php
+										$colorname = 'color_'.$network['id'];
+										$saved_color = (isset($saved_settings[$colorname])) ? $saved_settings[$colorname] : '' ; ?>
+									<input type="text" class="form-control colorpicker" id="color_{{$network['id']}}" name="styles[color_{{$network['id']}}]" value="<?php echo $saved_color; ?>">
 								</div>
 							</div>
 						@endforeach						
@@ -46,45 +56,36 @@
 						<div class="form-group">
 							<label for="topbar" class="col-sm-5 control-label">Top Bar Color</label>
 							<div class="col-sm-7">
+								<?php $selected_topbar = (isset($saved_settings['topbar'])) ? $saved_settings['topbar'] : '' ; ?>
 								<select class="form-control" id="topbar" name="styles[topbar]">
-									<option value="primary">Blue</option>
-									<option value="info">Sky</option>
-									<option value="warning">Orange</option>
-									<option value="danger">Red</option>
-									<option value="success">Green</option>
-									<option value="default">Default</option>
+									<option value="primary" <?php echo ($selected_topbar == 'primary') ? 'selected' : '' ; ?>>Blue</option>
+									<option value="info" <?php echo ($selected_topbar == 'info') ? 'selected' : '' ; ?>>Sky</option>
+									<option value="warning" <?php echo ($selected_topbar == 'warning') ? 'selected' : '' ; ?>>Orange</option>
+									<option value="danger" <?php echo ($selected_topbar == 'danger') ? 'selected' : '' ; ?>>Red</option>
+									<option value="success" <?php echo ($selected_topbar == 'success') ? 'selected' : '' ; ?>>Green</option>
+									<option value="default" <?php echo ($selected_topbar == 'default') ? 'selected' : '' ; ?>>Default</option>
 								</select>								
 							</div>
 						</div>
 						
 					</div>
-				</div>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </section>
-
-    <section class="content">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Custom CSS</h3>
-            </div>
-            <div class="box-body">
-				<div class="form-group">
-					<label for="custom_css" class="col-sm-2 control-label">Custom CSS</label>
-					<div class="col-sm-10">
-						<textarea class="form-control" id="custom_css" name="custom_css"></textarea>
+					<div class="col-sm-12">
+						<hr>
+						<div class="form-group">
+							<label for="custom_css" class="col-sm-2 control-label">Custom CSS</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="custom_css" name="custom_css"><?php echo $saved_custom_css; ?></textarea>
+							</div>
+						</div>						
+					</div>
+					<div class="col-sm-12 text-right">
+						<input type="submit" class="btn btn-lg btn-success" value="Save Changes">
 					</div>
 				</div>
             </div>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
-    </section>
-
-    <section class="content">
-		<input type="submit" class="btn btn-lg btn-success" value="Save Changes">
     </section>
     {!! Form::close() !!}                
 </div>

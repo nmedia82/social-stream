@@ -29,12 +29,12 @@ class HomeController extends Controller
     {
         $created_pages = Page::orderBy('created_at', 'asc')->get();
         $created_streams = Stream::orderBy('created_at', 'asc')->get();
-        $settings = Setting::findOrFail(1);
+        $settings = Setting::orderBy('created_at', 'asc')->get();
         return View::make('home')->with(array(
           'networks' => $this->get_social_networks(),
           'all_streams' => $created_streams,
           'all_pages' => $created_pages,
-          'global_settings' => $created_pages,
+          'global_settings' => $settings,
         ));
     }
 
