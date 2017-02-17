@@ -37,11 +37,12 @@
         $saved_settings = array();
         $saved_custom_css = '';
 
-        foreach ($global_settings as $value) {
-        $saved_settings = json_decode($value->styles, true);
-        $saved_custom_css = $value->css;
-        
-    }
+        if (isset($global_settings) && $global_settings != '') {
+            foreach ($global_settings as $value) {
+                $saved_settings = json_decode($value->styles, true);
+                $saved_custom_css = $value->css;
+            }
+        }
     ?>
     <style>
         <?php foreach ($saved_settings as $css_class => $val) { ?>
