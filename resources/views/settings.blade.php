@@ -79,6 +79,9 @@
 						</div>						
 					</div>
 					<div class="col-sm-12 text-right">
+						<div class="nmcolorSelector">
+							<div style="background-color: #0000ff"></div>
+						</div>
 						<input type="submit" class="btn btn-lg btn-success" value="Save Changes">
 					</div>
 				</div>

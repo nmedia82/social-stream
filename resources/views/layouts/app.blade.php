@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ URL::asset('dist/css/AdminLTE.min.css') }}">
+
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ URL::asset('dist/css/colorpicker.css') }}" />
     <!-- Editor -->
     <link rel="stylesheet" href="{{ URL::asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -52,7 +54,8 @@
     <!-- AdminLTE App -->
     <script src="{{ URL::asset('dist/js/app.min.js') }}"></script>
 
-    <script src="{{ URL::asset('js/jqColorPicker.min.js') }}"></script>
+    <script src="{{ URL::asset('dist/js/colorpicker.js') }}"></script>
+
     <!-- N-Media Custom Script -->
     <script src="{{ URL::asset('dist/js/script.js') }}"></script>
 </body>
