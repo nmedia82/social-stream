@@ -6,5 +6,5 @@
     	<a href=""><h6>lorem ulser</h6></a>
     	<span>32 views</span>
 	</div>
-  <div class="panel-footer"><i class="fa fa-stumbleupon"></i> <a href="">Shared </a>1 month ago</div>
+  <div class="panel-footer"><i class="fa fa-stumbleupon"></i> <a target="<?php echo $links_target; ?>" href="">Shared </a>1 month ago</div>
 </div>

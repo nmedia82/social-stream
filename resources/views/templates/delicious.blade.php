@@ -9,7 +9,7 @@
 					</div>
 				<div class="panel-footer">
 					<i class="fa fa-delicious"></i>
-					<a href="<?php echo (isset($net_data->u)) ? $net_data->u : '' ; ?>">Posted </a>
+					<a target="<?php echo $links_target; ?>" href="<?php echo (isset($net_data->u)) ? $net_data->u : '' ; ?>">Posted </a>
 					<?php echo $pagescontroller->time_elapsed_string($net_data->dt); ?>
 				</div>
 			</div>

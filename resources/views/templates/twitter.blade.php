@@ -9,7 +9,7 @@
 				</div>
 			  <div class="panel-footer">
 			  	<i class="fa fa-twitter"></i>
-			  	<a href="https://twitter.com/statuses/<?php echo $net_data->id; ?>">
+			  	<a target="<?php echo $links_target; ?>" href="https://twitter.com/statuses/<?php echo $net_data->id; ?>">
 			  		<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Tweeted'; ?>
 			  	</a>
 			  	<?php echo $pagescontroller->time_elapsed_string($net_data->created_at) ; ?>

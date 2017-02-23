@@ -91,6 +91,7 @@ class HomeController extends Controller
     {
         $setting = Setting::firstOrCreate(['id' => 1]);
         $setting->styles = json_encode($request->styles);
+        $setting->general_settings = json_encode($request->settings);
         $setting->css = $request->custom_css;
         $setting->save();
 

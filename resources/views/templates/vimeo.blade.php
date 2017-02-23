@@ -12,7 +12,7 @@
 		    	</p>
 			</div>
 		  <div class="panel-footer"><i class="fa fa-vimeo"></i>
-		  <a href="<?php echo $net_data->clip->link; ?>">Created </a>
+		  <a target="<?php echo $links_target; ?>" href="<?php echo $net_data->clip->link; ?>">Created </a>
 			<?php echo $pagescontroller->time_elapsed_string($net_data->clip->created_time); ?>
 		  </div>
 		</div>

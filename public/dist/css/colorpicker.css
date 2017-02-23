@@ -164,4 +164,13 @@
 	width: 36px;
 	height: 36px;
 	background: url(../images/select.png);
+	float: left;
+}
+.nmcolorSelector div {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 30px;
+    height: 30px;
+    background: url(../images/select.png) center;
 }

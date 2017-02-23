@@ -10,7 +10,7 @@
 			</div>
 		  <div class="panel-footer">
 		  	<i class="fa fa-pinterest"></i>
-		  	<a href="<?php echo $net_data->link; ?>">Pinned </a>
+		  	<a target="<?php echo $links_target; ?>" href="<?php echo $net_data->link; ?>">Pinned </a>
 				<?php echo $pagescontroller->time_elapsed_string($net_data->pubDate); ?>
 		  	</div>
 		</div>

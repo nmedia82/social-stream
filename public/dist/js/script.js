@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 	$('.rich-editor').wysihtml5();
 
 	$('.nmcolorSelector').ColorPicker({
-		color: '#0000ff',
+		// color: '#0000ff',
 		onShow: function (colpkr) {
 			$(colpkr).fadeIn(500);
 			return false;
@@ -15,9 +15,13 @@ jQuery(document).ready(function($) {
 		onHide: function (colpkr) {
 			$(colpkr).fadeOut(500);
 			return false;
-		},
+		},/*
 		onChange: function (hsb, hex, rgb) {
 			$('.nmcolorSelector div').css('backgroundColor', '#' + hex);
-		}
+		},*/
+		onSubmit: function(hsb, hex, rgb, el) {
+			$(el).find('div').css('backgroundColor', '#' + hex);
+			$(el).find('input').val(hex);
+		},
 	});	
 });

@@ -13,7 +13,7 @@ if (isset($settings->recenttracks->track)) {
 					</div>
 				  <div class="panel-footer">
 				  	<i class="fa fa-lastfm"></i>
-				  	<a href="">lestened to </a>
+				  	<a href="" target="<?php echo $links_target; ?>">lestened to </a>
 				  		<?php echo $net_data->date->{'#text'}; ?>
 				  </div>
 				</div>

@@ -8,7 +8,7 @@
 				    		<img src="{{ URL::asset('img/1.jpg') }}" class="img-responsive">
 				    	</div>
 					</div>
-				  <div class="panel-footer"><i class="fa fa-instagram"></i> <a href="">Posted </a>1 month ago</div>
+				  <div class="panel-footer"><i class="fa fa-instagram"></i> <a target="<?php echo $links_target; ?>" href="">Posted </a>1 month ago</div>
 				</div>
 			</div>
 		</div>

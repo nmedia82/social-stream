@@ -9,7 +9,7 @@
 				</div>
 			  <div class="panel-footer">
 			  	<i class="fa fa-tumblr"></i>
-			  	<a href="">Tumblr</a>
+			  	<a href="" target="<?php echo $links_target; ?>">Tumblr</a>
 			  	<?php echo $pagescontroller->time_elapsed_string($net_data->date) ; ?>
 			  </div>
 			</div>

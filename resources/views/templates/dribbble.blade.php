@@ -13,7 +13,7 @@
 				</div>
 			  	<div class="panel-footer">
 			  		<i class="fa fa-dribbble"></i>
-			  		<a href="">Dribbled </a>
+			  		<a target="<?php echo $links_target; ?>" href="">Dribbled </a>
 			  		<?php echo $pagescontroller->time_elapsed_string($net_data->created_at); ?>
 			  	</div>
 			</div>

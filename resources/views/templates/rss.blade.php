@@ -10,7 +10,7 @@
 			  	<div class="row">
 			  		<div class="col-xs-9 text-left">
 				  		<i class="fa fa-rss"></i>
-						<a href="<?php echo $net_data->link; ?>">
+						<a target="<?php echo $links_target; ?>" href="<?php echo $net_data->link; ?>">
 							<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Posted'; ?>
 						</a>
 				  		<?php echo $pagescontroller->time_elapsed_string($net_data->pubDate); ?>

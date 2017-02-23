@@ -35,27 +35,33 @@
     </script>
     <?php
         $saved_settings = array();
+        $saved_options = array();
         $saved_custom_css = '';
 
         if (isset($global_settings) && $global_settings != '') {
             foreach ($global_settings as $value) {
                 $saved_settings = json_decode($value->styles, true);
                 $saved_custom_css = $value->css;
+                $saved_options = json_decode($value->general_settings, true);
             }
         }
     ?>
     <style>
         <?php foreach ($saved_settings as $css_class => $val) { ?>
             <?php if($css_class == 'bgcolor') { ?>
-                body { background-color: <?php echo $val; ?>}
+                body { background-color: #<?php echo $val; ?>}
             <?php } else { ?>
                 .nm-<?php echo substr($css_class, strpos($css_class, "_") + 1); ?> .panel-footer {
-                    background-color: <?php echo $val; ?>;
+                    background-color: #<?php echo $val; ?>;
                 }
             <?php } ?>
         <?php } ?>
 
+        .panel.panel-default .panel-body {
+            min-height: <?php echo (isset($saved_options['height'])) ? $saved_options['height'] : ''; ?>;
+        }
         <?php echo $saved_custom_css; ?>
+
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -137,6 +143,12 @@
     <!-- Bootstrap 3.3.6 -->
     <script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- Custom Script -->
+    <script>
+        var g2squidData = {
+            results: '<?php echo (isset($saved_options["results"])) ? $saved_options["results"] : ''; ?>',
+            orderby: '<?php echo (isset($saved_options["orderby"])) ? $saved_options["orderby"] : ''; ?>',
+        }
+    </script>
     <script src="{{ URL::asset('js/pagescript.js') }}"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@
 					</div>
 				<div class="panel-footer">
 					<i class="fa fa-facebook"></i>
-					<a href="<?php echo (isset($net_data->link)) ? $net_data->link : '' ; ?>">
+					<a target="<?php echo $links_target; ?>" href="<?php echo (isset($net_data->link)) ? $net_data->link : '' ; ?>">
 						<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Posted'; ?>
 					</a>
 					<?php echo $pagescontroller->time_elapsed_string($net_data->created_time); ?>
