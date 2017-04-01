@@ -16,8 +16,8 @@
 			  <div class="panel-footer">
 			  	<i class="fa fa-google-plus"></i>
 			  	<a target="<?php echo $links_target; ?>" href="<?php echo $net_data->url; ?>">
-					<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Shared'; ?>
-			  	</a>
+					<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Shared'; ?></a>
+					
 				<?php echo $pagescontroller->time_elapsed_string($net_data->published); ?>
 			  </div>
 			</div>

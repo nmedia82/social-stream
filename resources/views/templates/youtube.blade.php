@@ -10,7 +10,8 @@
 			</div>
 		  <div class="panel-footer">
 		  	<i class="fa fa-youtube"></i>
-		  	<a target="<?php echo $links_target; ?>" href="#">Uploaded </a><?php echo $pagescontroller->time_elapsed_string($net_data->snippet->publishedAt); ?>
+		  	<a target="<?php echo $links_target; ?>" href="#">Uploaded</a>
+		  	<?php echo $pagescontroller->time_elapsed_string($net_data->snippet->publishedAt); ?>
 		  </div>
 		</div>
 	</div>

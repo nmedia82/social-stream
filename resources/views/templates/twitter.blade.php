@@ -3,6 +3,9 @@
 		<div class="nm-<?php echo $network; ?>">
 			<div class="panel panel-default">
 				<div class="panel-body">
+					<?php if (isset($net_data->entities->media[0]->type) && $net_data->entities->media[0]->type == 'photo') {
+						echo '<img src="'.$net_data->entities->media[0]->media_url.'" class="img-responsive">';
+					}?>					
 					<p class="text-justify">
 			  			<?php echo (isset($net_data->text)) ? $net_data->text : '' ; ?>	
 					</p>
@@ -10,8 +13,8 @@
 			  <div class="panel-footer">
 			  	<i class="fa fa-twitter"></i>
 			  	<a target="<?php echo $links_target; ?>" href="https://twitter.com/statuses/<?php echo $net_data->id; ?>">
-			  		<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Tweeted'; ?>
-			  	</a>
+			  		<?php echo ($stream_settings->$network->intro != '') ? $stream_settings->$network->intro : 'Tweeted'; ?></a>
+			  		
 			  	<?php echo $pagescontroller->time_elapsed_string($net_data->created_at) ; ?>
 			  </div>
 			</div>
