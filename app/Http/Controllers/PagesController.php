@@ -87,9 +87,16 @@ class PagesController extends Controller
         if( isset($content->errors) )
             die('Check your Credentials');
         
-        $statuses = $connection->get("statuses/user_timeline", ["count" => $count, "exclude_replies" => true]);
+        // If Searching Tweets
+        if (isset($options->id) && strpos($options->id, '#') !== false) {
+            $statuses = $connection->get("search/tweets", ["count" => $count, "q" => str_replace("#","",$options->id)]);
+            return $statuses->statuses;
+        } else {
+            $statuses = $connection->get("statuses/user_timeline", ["count" => $count, "exclude_replies" => true, "screen_name" => $options->id]);
+            return $statuses;
+        }
 
-        return $statuses;
+
     }
 
     public function get_flickr_data($options){

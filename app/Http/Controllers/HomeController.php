@@ -229,9 +229,8 @@ class HomeController extends Controller
                        'title' => 'ID',
                        'type'  => 'text',
                        'id'    => 'id',
-                       'help'  => '1. Enter a twitter username without the "@"
-                                    2. To use a twitter list enter "/" followed by the list ID - e.g. /123456
-                                    3. To search enter "#" followed by the search terms - e.g. #designchemical',
+                       'help'  => 'Enter a twitter username without the "@", 
+                                    To search enter "#" followed by the search terms. Eg: #searchterm',
                     ),
                     array(
                        'title' => 'Link Text',
